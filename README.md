@@ -50,6 +50,7 @@ mysql:
   database: consul_timeline
   setup_schema: true        # create the tables at startup
   retention_days: 14        # older daily partitions are dropped
+  # params: key=value&key=value   # extra driver parameters
 ```
 
 Print the schema with `consul-timeline -mysql-print-schema`. Events land in

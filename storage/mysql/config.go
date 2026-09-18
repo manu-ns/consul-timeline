@@ -28,6 +28,9 @@ type Config struct {
 	// facets and filtered histograms.
 	FacetSample  int `json:"facet_sample"`
 	MaxOpenConns int `json:"max_open_conns"`
+	// Params are extra driver parameters appended to the connection string,
+	// as "key=value&key=value".
+	Params string `json:"params"`
 }
 
 var DefaultConfig = Config{
@@ -60,6 +63,7 @@ func init() {
 	flag.StringVar(&flagConfig.LegacyTable, "mysql-legacy-table", DefaultConfig.LegacyTable, "Table written by versions before 0.3, read for older history and purged (e.g. events)")
 	flag.IntVar(&flagConfig.FacetSample, "mysql-facet-sample", DefaultConfig.FacetSample, "Most recent matching rows scanned for facets and filtered histograms")
 	flag.IntVar(&flagConfig.MaxOpenConns, "mysql-max-open-conns", DefaultConfig.MaxOpenConns, "Connection pool size")
+	flag.StringVar(&flagConfig.Params, "mysql-params", DefaultConfig.Params, "Extra driver parameters appended to the connection string (key=value&key=value)")
 }
 
 func ConfigFromFlags() Config {
